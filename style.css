@@ -1,0 +1,226 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: "Ubuntu", sans-serif;
+}
+body{
+    background-color: #f0f4ff;
+}
+.con{
+    background-color: #ffffff; /* White background for the form container */
+    border-radius: 15px; /* Rounded corners */
+    padding: 2rem;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1); /* Subtle shadow for depth */
+    max-width: 600px;
+    width: 100%;
+}
+img{
+    z-index: 1;
+}
+.step{
+    z-index: 2;
+}
+.step h1{
+    color: #072953;
+}
+.step p{
+    color: #C7C7CC;
+    font-size:  16px;
+}
+.steps span {
+    background-color: transparent;
+    color: white;
+    border: 2px solid white;
+    border-radius: 50%;
+    padding: 10px;
+    display: inline-block;
+    width: 35px;
+    height: 35px;
+    text-align: center;
+    line-height: 15px;
+  }
+
+  .steps.active span {
+    background-color: #BEE2F9; /* Active background color */
+    color: black; /* Active text color */
+    border: none;
+  }
+
+
+.step input{
+    width: 320px;
+    padding: 5px;
+    /* border: none; */
+    border-radius: 5px;
+    border-style: solid;
+}
+.btns{
+    background-color: #03295A;
+    border: 0;
+    padding: 10px;
+    color: white;
+    border-radius: 5px;
+}
+.btens{
+    border: none;
+    background: none;
+}
+.btens:hover{
+    color:#03295A ;
+}
+.info span{
+    border: solid;
+    background-color: #BDE2FC ;
+    border-radius: 360px;
+}
+.bill{
+    color: #C7C7CC;
+}
+.card{
+    height: 1000px;
+}
+h4{
+    color:  #072953;;
+}
+.text p{
+    color: #C7C7CC;
+}
+.hold{
+    background-color: #F8F9FE;
+    border-radius: 20px;
+    width: 100%;
+    padding: 20px;
+    gap: 30px;
+}
+/* Container for the toggle */
+.toggle-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    padding: 10px;
+    background-color: #f0f0f5;
+    border-radius: 25px;
+    width: 200px;
+}
+
+/* Style the labels */
+.toggle-container span {
+    font-size: 16px;
+    color: #999999;
+}
+
+/* Highlight the active label */
+.toggle-container span.active {
+    font-weight: bold;
+    color: #0a1830;
+}
+
+/* Switch container */
+.switch {
+    position: relative;
+    display: inline-block;
+    width: 40px;
+    height: 20px;
+}
+
+/* Hide the default checkbox */
+.switch input {
+    opacity: 0;
+    width: 0;
+    height: 0;
+}
+
+/* The slider */
+.slider {
+    position: absolute;
+    cursor: pointer;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: #999999;
+    transition: 0.4s;
+    border-radius: 20px;
+}
+
+.slider:before {
+    position: absolute;
+    content: "";
+    height: 12px;
+    width: 12px;
+    left: 4px;
+    bottom: 4px;
+    background-color: white;
+    transition: 0.4s;
+    border-radius: 50%;
+}
+
+input:checked + .slider {
+    background-color: #0a1830;
+}
+
+input:checked + .slider:before {
+    transform: translateX(20px);
+}
+
+  @media (max-width: 576px) {
+    .overlay {
+      top: -100px; /* Adjust this value to control overlap */
+      left: 0;
+      width: 100%;
+      z-index: 2; /* Ensure the overlay is on top */
+    }
+
+    .step {
+      margin-top: 150px; /* Push down the form so that it overlaps nicely */
+      z-index: 3;
+      position: relative;
+    }
+
+    .sidebar-img.mobile-img {
+      z-index: 1;
+    }
+    .card-body{
+        height: 100px;
+        display: flex;
+        gap: 2px;
+    }
+    .steps{
+        position: relative;
+        top: 10px;
+        left: 45px;
+    }
+    .cards {
+        height: 20px;
+        margin-bottom: 20px; /* Adjust the height as needed */
+    }
+    .cards img {
+        width: 50px; /* Reduce the image size if needed */
+    }
+    .cards h5 {
+        font-size: 1.5rem; /* Adjust the font size if needed */
+    }
+    .cards p {
+        font-size: 1rem; /* Adjust the font size if needed */
+    }
+    .boss{
+        height: 20px;
+    }
+    .cons{
+        background-color: #ffffff; /* White background for the form container */
+        border-radius: 15px; /* Rounded corners */
+        padding: 2rem;
+        box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1); /* Subtle shadow for depth */
+        max-width: 600px;
+        width: 100%;
+        position: relative;
+        bottom: 80px;
+    }
+    .in{
+        width: 30px;
+        height: 30px; /* Adjust the height */
+        padding: 5px
+    }
+  }
