@@ -164,6 +164,22 @@ input:checked + .slider {
 input:checked + .slider:before {
     transform: translateX(20px);
 }
+.cons{
+    min-height: 10vh;
+}
+.last{
+    width: 20%;
+        padding: 16px;
+        color: white;
+        border: none;
+        background: #928AFB;
+        border-radius: 8px;
+}
+.lasts{
+    color:#6B63FA ;
+    font-size: 20px;
+    font-weight: 600;
+}
 
   @media (max-width: 576px) {
     .overlay {
@@ -178,7 +194,10 @@ input:checked + .slider:before {
       z-index: 3;
       position: relative;
     }
-
+        .last{
+            width: 20%;
+            padding: 10px;
+        }
     .sidebar-img.mobile-img {
       z-index: 1;
     }

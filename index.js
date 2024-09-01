@@ -160,123 +160,143 @@ sideBar.innerHTML = `
         </div>
     </div>  
     <div class="d-flex justify-content-between mt-3">
-        <button type="button" onclick="goToPreviousStep(3)" class="btens" id="prevStep2">Go back</button>
+        <button type="button" onclick="goToPreviousStep(3)" class="btens" id="prevStep3">Go back</button>
         <button type="button" onclick="goToNextStep(3)" class="btns" id="nextStep3">Next Step</button>
     </div>
 </div>
 
+<div id="step-4-content" class="cons container-fluid mt-1 col-lg-7" style="display: none; min-height: 80vh;">
+            <div>
+                <h1>Finishing up</h1>
+                <p class="bill">Double-check everything looks OK before confirming</p>
+            </div>
+            <div class="d-flex flex-row flex-wrap col-lg-12 col-12">
+            <div class="card col-12 mb-4" style="background:#F8F9FE; max-height:200px; border:none; overflow:   hidden;">
+                    <div class="card-body d-flex flex-column justify-content-between h-100">
+                        <div class="d-flex justify-content-between">
+                            <div class="text align-items-center">
+                                <h5>Arcade (Monthly)</h5>
+                                <a href="">Change</a>
+                            </div>
+                            <span class="ml-auto">$9/mo</span>
+                        </div>
+                        <hr class="my-2">
+                        <div class="text d-flex justify-content-between">
+                            <p>Online service</p>
+                            <span class="ml-auto">+$1/mo</span>
+                        </div>
+                        <div class="text d-flex justify-content-between">
+                            <p>Larger storage</p>
+                            <span class="ml-auto">+$2/mo</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="text d-flex justify-content-around w-100 mb-5">
+                    <p>Total (per month)</p>
+                    <span class="ml-auto lasts">+$12/mo</span>
+                </div>
+            </div>
+            <div class="d-flex justify-content-between mt-3">
+                <button type="button" onclick="goToPreviousStep(4)" class="btens" id="prevStep4">Go back</button>
+                <button type="button" id="confirm-btn" class="last">Confirm</button>
+            </div>
+        </div>
+        <div id="thank-you-message" style="display:none;">
+
+
+    </div>
+</div>
+
+    
+
 `;
-
 // Function to go to the next step
-// Function to go to the next step
-const toggleSwitch = document.getElementById('toggleSwitch');
-const monthlyLabel = document.getElementById('monthly');
-const yearlyLabel = document.getElementById('yearly');
+function goToNextStep(currentStep) {
+    let currentStepDiv = document.getElementById('step-' + currentStep + '-content');
+    let nextStepDiv = document.getElementById('step-' + (currentStep + 1) + '-content');
 
-toggleSwitch.addEventListener('change', function() {
-    if (toggleSwitch.checked) {
-        yearlyLabel.classList.add('active');
-        monthlyLabel.classList.remove('active');
+    // Validation: Check if the form in the current step is valid
+    if (currentStepDiv.querySelector('form') && !currentStepDiv.querySelector('form').checkValidity()) {
+        currentStepDiv.querySelector('form').reportValidity();
+        return; // Stop the function if the form is not valid
+    }
+
+    // Hide the current step
+    currentStepDiv.style.display = 'none';
+    // Show the next step
+    nextStepDiv.style.display = 'block';
+
+    // Update the sidebar step indicator
+    setActiveStep(currentStep + 1);
+}
+
+function goToPreviousStep(currentStep) {
+    let currentStepDiv = document.getElementById('step-' + currentStep + '-content');
+    let previousStepDiv = document.getElementById('step-' + (currentStep - 1) + '-content');
+
+    // Hide the current step
+    currentStepDiv.style.display = 'none';
+    // Show the previous step
+    previousStepDiv.style.display = 'block';
+
+    // Update the sidebar step indicator
+    setActiveStep(currentStep - 1);
+}
+
+function setActiveStep(stepNumber) {
+    const steps = document.querySelectorAll('.step-indicator');
+    steps.forEach((step, index) => {
+        if (index === stepNumber - 1) {
+            step.classList.add('active');
+        } else {
+            step.classList.remove('active');
+        }
+    });
+}
+
+// Event listeners
+document.getElementById('nextStep1').addEventListener('click', function() {
+    const form = document.getElementById('personalInfoForm');
+    if (form.checkValidity()) {
+        goToNextStep(1);
     } else {
-        monthlyLabel.classList.add('active');
-        yearlyLabel.classList.remove('active');
+        form.reportValidity();
     }
 });
 
-// Initialize the correct label as active
-monthlyLabel.classList.add('active');
+document.getElementById('prevStep2').addEventListener('click', function() {
+    goToPreviousStep(2);
+});
 
-function goToNextStep(currentStep) {
-        // Select the current step and the next step
-        let currentStepDiv = document.getElementById('step-' + currentStep + '-content');
-        let nextStepDiv = document.getElementById('step-' + (currentStep + 1) + '-content');
-    
-        // Validation: Check if the form in the current step is valid
-        if (currentStepDiv.querySelector('form') && !currentStepDiv.querySelector('form').checkValidity()) {
-            // If the form is invalid, display the validation messages
-            currentStepDiv.querySelector('form').reportValidity();
-            return; // Stop the function here if the form is not valid
-        }
-    
-        // Hide the current step
-        currentStepDiv.style.display = 'none';
-        // Show the next step
-        nextStepDiv.style.display = 'block';
-    
-        // Update the sidebar step indicator
-        setActiveStep(currentStep + 1);
-    }
-    
-    
-    function goToPreviousStep(currentStep) {
-        // Select the current step and the previous step
-        let currentStepDiv = document.getElementById('step-' + currentStep + '-content');
-        let previousStepDiv = document.getElementById('step-' + (currentStep - 1) + '-content');
-    
-        // Hide the current step
-        currentStepDiv.style.display = 'none';
-        // Show the previous step
-        previousStepDiv.style.display = 'block';
-    
-        // Update the sidebar step indicator
-        setActiveStep(currentStep - 1);
-    }
-    
-    function setActiveStep(stepNumber) {
-        const steps = document.querySelectorAll('.steps');
-        steps.forEach((step, index) => {
-            if (index === stepNumber - 1) {
-                step.classList.add('active');
-            } else {
-                step.classList.remove('active');
-            }
-        });
-    }
-    
-    // Event listener for the "Next Step" button
-    document.getElementById('nextStep1').addEventListener('click', function() {
-        const form = document.getElementById('personalInfoForm');
-        if (form.checkValidity()) {
-            goToNextStep(1);
-        } else {
-            form.reportValidity();
-        }
-    });
-    
-    // Event listener for the "Previous Step" button
-    document.getElementById('prevStep2').addEventListener('click', function() {
-        goToPreviousStep(2);
-    });
-    
-    document.querySelector('form').addEventListener('submit', function(event) {
-        event.preventDefault(); // Prevents the page from refreshing
-    });
-    
-    // Function to update the active step indicator in the sidebar
-    function setActiveStep(stepNumber) {
-        const steps = document.querySelectorAll('.steps');
-        steps.forEach((step, index) => {
-            if (index === stepNumber - 1) {
-                step.classList.add('active');
-            } else {
-                step.classList.remove('active');
-            }
-        });
-    }
-    
-    // Event listener for the "Next Step" button
-    document.getElementById('nextStep1').addEventListener('click', function() {
-        const form = document.getElementById('personalInfoForm');
-        if (form.checkValidity()) {
-            // Proceed to the next step only if the form is valid
-            goToNextStep(1);
-        } else {
-            // If the form is invalid, display the built-in validation messages
-            form.reportValidity();
-        }
-    });
-    
-    
-// Adjust the position of the overlay
-let overlayElement = document.querySelector('.overlay');
-overlayElement.style.top = '0';
+document.getElementById('nextStep2').addEventListener('click', function() {
+    goToNextStep(2);
+});
+
+document.getElementById('prevStep3').addEventListener('click', function() {
+    goToPreviousStep(3);
+});
+
+document.getElementById('confirm-btn').addEventListener('click', function(){
+    let thankYouMessageContainer = document.getElementById ('thank-you-message')
+    let currentContent = document.getElementById('step-4-content');
+    currentContent.style.display = 'none';
+
+
+    let thankYouMesasgeContent = `
+                <div class=" conscol-12 mt-5">
+                <div class="w-100 d-flex justify-content-center">
+                    <img src="assets/images/icon-thank-you.svg" alt=""/>
+                </div>
+                <h2 class="text-center">Thank You!</h2>
+                <p class="text-center">Thanks for confirming your subscription! We hope you have fun using our platform.If you ever need support, please feel free to email us at support@loremgaming.com</p>
+             </div>
+    `
+    thankYouMessageContainer.innerHTML=thankYouMesasgeContent;
+    thankYouMessageContainer.style.display = 'block'
+})
+// Initial setup
+document.querySelector('#monthly').classList.add('active');
+document.getElementById('step-1-content').style.display = 'block';
+
+// Ensure the overlay is positioned correctly
+document.querySelector('.overlay').style.top = '0';
